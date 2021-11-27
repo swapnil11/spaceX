@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.finalplayground.domain.model.Launch" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/missionName"
+            style="@style/BlackStyle.TitleStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/std_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.name}"
+            app:layout_constraintBottom_toTopOf="@+id/missionYear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Paramount Film Studio Paramount Film StudioParamount Film StudioParamount Film StudioParamount Film StudioParamount Film Studio" />
+
+        <TextView
+            android:id="@+id/missionYear"
+            style="@style/BlackStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginEnd="@dimen/std_margin"
+            android:layout_marginBottom="@dimen/std_margin"
+            android:maxLines="1"
+            android:text="@{item.dateUTC.toString()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/missionName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="$14.49" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

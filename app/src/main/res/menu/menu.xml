@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        android:title="@string/refresh_menu_label"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_baseline_filter_alt_24"
+        android:title="@string/menu_filter_label"
+        app:showAsAction="ifRoom">
+        <!-- "sort" submenu -->
+        <menu>
+            <item android:id="@+id/action_filter_launch_success"
+                android:title="@string/filter_launch_success_menu_label" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/sort_menu_label"
+        app:showAsAction="ifRoom">
+        <!-- "sort" submenu -->
+        <menu>
+            <item android:id="@+id/action_mission_name"
+                android:title="@string/mission_name_menu_label" />
+            <item android:id="@+id/action_launch_date"
+                android:title="@string/launch_date_menu_label" />
+        </menu>
+    </item>
+
+</menu>

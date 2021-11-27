@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+        <variable
+            name="isError"
+            type="boolean" />
+
+        <variable
+            name="launchItem"
+            type="com.example.finalplayground.domain.model.Launch" />
+
+        <variable
+            name="rocketItem"
+            type="com.example.finalplayground.domain.model.RocketDetails" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="@dimen/std_margin"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_data"
+                android:visibility="@{isError ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="No Data" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:text="@{launchItem.name}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:text="@{@string/launch_status(launchItem.success)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text=" Description" />
+
+            <TextView
+                android:id="@+id/details"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="@{@string/details(launchItem.details)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status"
+                tools:text=" Description" />
+
+            <TextView
+                android:id="@+id/linksWiki"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:autoLink="web"
+                android:text="@{@string/link_wiki(launchItem.links.wikipedia)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details" />
+
+            <TextView
+                android:id="@+id/linkWebcast"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:autoLink="web"
+                android:text="@{@string/link_webcast(launchItem.links.webcast)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linksWiki" />
+
+            <TextView
+                android:id="@+id/linkArticle"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:autoLink="web"
+                android:text="@{@string/link_web_article(launchItem.links.article)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linkWebcast" />
+
+            <TextView
+                android:id="@+id/upcomingLabel"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/upcoming(launchItem.upcoming)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linkArticle"
+                tools:text=" Category" />
+
+            <TextView
+                android:id="@+id/flightNumber"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:text="@{@string/flight_number(launchItem.flightNumber)}"
+                android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/upcomingLabel" />
+
+            <TextView
+                android:id="@+id/rocketHeight"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_height(rocketItem.height.meters, rocketItem.height.feet)}"
+                android:visibility="@{isLoading || isError ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flightNumber"
+                tools:text=" Date" />
+
+            <TextView
+                android:id="@+id/rocketDiameter"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:text="@{@string/rocket_diameter(rocketItem.diameter.meters, rocketItem.diameter.feet)}"
+                android:visibility="@{isLoading || isError ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketHeight" />
+
+            <TextView
+                android:id="@+id/rocketMass"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_mass(rocketItem.mass.kg, rocketItem.mass.lb)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketDiameter" />
+
+            <TextView
+                android:id="@+id/rocketName"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/std_margin"
+                android:text="@{@string/rocket_name(rocketItem.name)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketMass" />
+
+            <TextView
+                android:id="@+id/rocketType"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_type(rocketItem.type)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketName" />
+
+            <TextView
+                android:id="@+id/rocketActive"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_active(rocketItem.active)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketType" />
+
+            <TextView
+                android:id="@+id/rocketStages"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_stages(rocketItem.stages)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketActive" />
+
+            <TextView
+                android:id="@+id/rocketBoosters"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_boosters(rocketItem.boosters)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketStages" />
+
+            <TextView
+                android:id="@+id/rocketCost"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_cost_per_launch(rocketItem.costPerLaunch)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketBoosters" />
+
+            <TextView
+                android:id="@+id/rocketSuccessRate"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_success_rate(rocketItem.successRatePct)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketCost" />
+
+            <TextView
+                android:id="@+id/rocketFirstFlight"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_first_flight(rocketItem.firstFlight)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketSuccessRate" />
+
+            <TextView
+                android:id="@+id/rocketCountry"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_country(rocketItem.country)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketFirstFlight" />
+
+            <TextView
+                android:id="@+id/rocketCompany"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:text="@{@string/rocket_company(rocketItem.company)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketCountry" />
+
+            <TextView
+                android:id="@+id/rocketWiki"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:autoLink="web"
+                android:text="@{@string/rocket_wiki(rocketItem.wikipedia)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketCompany" />
+
+            <TextView
+                android:id="@+id/rocketDescription"
+                style="@style/BlackStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/std_margin"
+                android:layout_marginTop="@dimen/std_tiny_margin"
+                android:layout_marginEnd="@dimen/std_margin"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="@{@string/rocket_description(rocketItem.description)}"
+                android:visibility="@{isLoading || isError  ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rocketWiki" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

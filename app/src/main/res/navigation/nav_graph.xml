@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/launchListFragment">
+
+    <fragment
+        android:id="@+id/launchListFragment"
+        android:name="com.example.finalplayground.ui.fragments.LaunchListFragment">
+        <action
+            android:id="@+id/listFragmentAction"
+            app:destination="@id/launchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/launchDetailFragment"
+        android:name="com.example.finalplayground.ui.fragments.LaunchDetailFragment">
+
+        <argument
+            android:name="item"
+            app:argType="com.example.finalplayground.domain.model.Launch"/>
+    </fragment>
+
+</navigation>
